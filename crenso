@@ -274,7 +274,9 @@ if [ "$mode" != "" ]; then # run block (else just print)
             s=$s1_alpb
             change_solvent="on"
          fi
-         xtb inp.xyz --alpb $s --opt vtight >> $OUT
+         # Change depending on if turbomole is installed
+         obabel -i tmol coord -o xyz -O inp.xyz
+         #xtb inp.xyz --alpb $s --opt vtight >> $OUT
          mv xtbopt.xyz gfn2_opt.xyz
          x2t gfn2_opt.xyz > coord 2>/dev/null
          echo -e "#>>># Running CENSO single-structure mode in $m" 
